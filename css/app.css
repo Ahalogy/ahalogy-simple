@@ -1,0 +1,174 @@
+/* app css stylesheet */
+
+/* ----------------------- */
+/* Z-index values for page */
+/* ----------------------- */
+/* 0 = Anything that should go behind a "screen"
+ * 1 = Screens
+ * 2 = Anything that should go on top of a "screen" */
+
+/* Reset */
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Confine all page elements to fit
+ * within the screen. We will resize
+ * many elements later, but want to ensure
+ * no elements are wider than the screen */
+
+div, span, h1, h2, h3, h4, h5, p, img,
+ul, li {
+  max-width: 100%;
+}
+
+/* --------------------------- */
+/* Common or reusable elements */
+/* --------------------------- */
+
+.black-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 568px;
+  background-color: rgba(0,0,0,0.85);
+  z-index: 1; /* Above the images, below the text */
+}
+
+/* Progress Bar */
+/* ------------ */
+
+#progress {
+  z-index: 200;
+  height: 2%;
+  background: blue;
+  bottom: 0;
+  background-position: initial initial;
+  background-repeat: initial initial;
+}
+
+/* ---------- */
+/* Cover Page */
+/* ---------- */
+
+.cover-page {
+  font-family: "proxima-nova", sans-serif;
+  height: 568px;
+  width: 100%;
+  text-align: center;
+  z-index: 100;
+  overflow: hidden;
+}
+
+.cover-page .cover-image {
+  width: 100%;
+  background-size: cover;
+  top: 0;
+  left: 0;
+}
+
+.cover-page .avatar-container {
+  position: absolute;
+  top: 100px;
+  z-index: 2;
+  width: 100%;
+  text-align: center;
+  -webkit-animation: menu 1.5s;
+  -moz-animation: menu 1.5s;
+  -ms-animation: menu 1.5s;
+  -o-animation: menu 1.5s;
+  animation: menu 1.5s;
+}
+
+.cover-page .avatar {
+  background: url("http://media-cache-ec0.pinimg.com/avatars/twopeasandpod-85_140.jpg") no-repeat #ccc;
+  background-size: cover;
+  height: 100px;
+  width: 100px;
+  margin: 0 auto;
+  border-radius: 50px;
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  border: 1px solid transparent;
+
+  /* Fade in */
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3;
+}
+
+.cover-page .post-title {
+  position: absolute;
+  top: 100px;
+  z-index: 2;
+  color: #fff;
+  font-weight: bold;
+  width: 80%;
+  margin-left: 10%;
+}
+
+/* --------------- */
+/* Content Section */
+/* --------------- */
+
+.content-section {
+  background: #fff;
+  left: 0;
+  min-height: 568px;
+  width: 100%;
+  height: auto;
+  background-size: cover;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+.content-section img {
+}
+
+.content-section p {
+  font-family: "museo-sans", sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 26px;
+  padding: 15px;
+}
+
+.content-section:nth-child(1) {
+  z-index: -1;
+}
+.content-section:nth-child(2) {
+  z-index: -2;
+}
+.content-section:nth-child(3) {
+  z-index: -3;
+}
+.content-section:nth-child(4) {
+  z-index: -4;
+}
+.content-section:nth-child(5) {
+  z-index: -5;
+}
+.content-section:nth-child(6) {
+  z-index: -6;
+}
+.content-section:nth-child(7) {
+  z-index: -7;
+}
+.content-section:nth-child(8) {
+  z-index: -8;
+}
+.content-section:nth-child(9) {
+  z-index: -9;
+}
+
+/* ------------------ */
+/* Skrollr Custom CSS */
+/* ------------------ */
+
+.skrollable {
+  position: fixed;
+}

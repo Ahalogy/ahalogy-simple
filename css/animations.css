@@ -1,0 +1,63 @@
+/* ------------------------ */
+/* CSS3 Animation Keyframes */
+/* ------------------------ */
+
+@-moz-keyframes menu {
+  0% {
+    margin-top: 3em;
+    opacity: 0;
+  }
+
+  100% {
+    margin-top: 0;
+    opacity: 100%;
+  }
+}
+
+@-webkit-keyframes menu {
+  0% {
+    margin-top: 3em;
+    opacity: 0;
+  }
+
+  100% {
+    margin-top: 0;
+    opacity: 100%;
+  }
+}
+
+@-o-keyframes menu {
+  0% {
+    margin-top: 3em;
+    opacity: 0%;
+  }
+
+  100% {
+    margin-top: 0;
+    opacity: 100%;
+  }
+}
+
+@-ms-keyframes menu {
+  0% {
+    margin-top: 3em;
+    opacity: 0;
+  }
+
+  100% {
+    margin-top: 0;
+    opacity: 100%;
+  }
+}
+
+@keyframes menu {
+  0% {
+    margin-top: 3em;
+    opacity: 0;
+  }
+
+  100% {
+    margin-top: 0;
+    opacity: 100%;
+  }
+}
