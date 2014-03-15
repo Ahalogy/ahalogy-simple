@@ -94,7 +94,7 @@ $(document).ready(function() {
                 case 'dragup':
                     // stick to the finger
                     var pane_offset = -(100/pane_count)*current_pane;
-                    var drag_offset = ((100/pane_height)*ev.gesture.deltaX) / pane_count;
+                    var drag_offset = ((100/pane_height)*ev.gesture.deltaY) / pane_count;
 
                     // slow down at the first and last pane
                     if((current_pane == 0 && ev.gesture.direction == "down") ||
@@ -125,7 +125,7 @@ $(document).ready(function() {
                         }
                     }
                     else {
-                        self.showPane(current_pane, true);
+                        //self.showPane(current_pane, true);
                     }
                     break;
             }
