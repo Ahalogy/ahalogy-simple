@@ -90,35 +90,35 @@ $(document).ready(function() {
             ev.gesture.preventDefault();
 
             switch(ev.type) {
-                case 'dragright':
-                case 'dragleft':
+                case 'dragdown':
+                case 'dragup':
                     // stick to the finger
                     var pane_offset = -(100/pane_count)*current_pane;
                     var drag_offset = ((100/pane_height)*ev.gesture.deltaX) / pane_count;
 
                     // slow down at the first and last pane
-                    if((current_pane == 0 && ev.gesture.direction == "right") ||
-                        (current_pane == pane_count-1 && ev.gesture.direction == "left")) {
+                    if((current_pane == 0 && ev.gesture.direction == "down") ||
+                        (current_pane == pane_count-1 && ev.gesture.direction == "up")) {
                         drag_offset *= .4;
                     }
 
                     setContainerOffset(drag_offset + pane_offset);
                     break;
 
-                case 'swipeleft':
+                case 'swipeup':
                     self.next();
                     ev.gesture.stopDetect();
                     break;
 
-                case 'swiperight':
+                case 'swipedown':
                     self.prev();
                     ev.gesture.stopDetect();
                     break;
 
                 case 'release':
                     // more then 50% moved, navigate
-                    if(Math.abs(ev.gesture.deltaX) > pane_height/2) {
-                        if(ev.gesture.direction == 'right') {
+                    if(Math.abs(ev.gesture.deltaY) > pane_height/2) {
+                        if(ev.gesture.direction == 'down') {
                             self.prev();
                         } else {
                             self.next();
@@ -131,7 +131,7 @@ $(document).ready(function() {
             }
         }
 
-        new Hammer(element[0], { drag_lock_to_axis: true }).on("release dragleft dragright swipeleft swiperight", handleHammer);
+        new Hammer(element[0], { drag_lock_to_axis: true }).on("release dragup dragdown swipeup swipedown", handleHammer);
     }
 
     var carousel = new Carousel("#parallaxer");
