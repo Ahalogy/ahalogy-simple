@@ -175,3 +175,14 @@ ul, li {
 .skrollable {
   position: fixed;
 }
+
+#stickySwipe {
+  width: 100%;
+  min-height: 568px;
+  height: 100%;
+}
+
+#skrollr-container {
+  min-height: 568px;
+  height: 100%;
+}
