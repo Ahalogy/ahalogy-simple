@@ -42,9 +42,14 @@ ul, li {
 
 #progress {
   z-index: 200;
-  height: 2%;
-  background: blue;
-  bottom: 0;
+  width: 1%;
+  height: 6%;
+  background: #444;
+  top: 0;
+  right: 1%;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
   background-position: initial initial;
   background-repeat: initial initial;
 }
