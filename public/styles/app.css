@@ -124,7 +124,7 @@ ul, li {
   left: 0;
   min-height: 568px;
   width: 100%;
-  height: auto;
+  padding-bottom: 50px;
   background-size: cover;
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -189,4 +189,16 @@ ul, li {
 #skrollr-container {
   min-height: 568px;
   height: 100%;
+}
+
+#page-counter {
+  display: none;
+  position: absolute;
+  z-index: 100;
+  bottom: 20px;
+  left: 0;
+  padding: 7px;
+  font-size: 14px;
+  background: rgba(0,0,0,0.75);
+  color: #fff;
 }

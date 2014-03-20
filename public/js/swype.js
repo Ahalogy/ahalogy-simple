@@ -38,13 +38,13 @@ $(document).ready(function() {
         // it is scrolled to
         var prevHeight = 0;
         for (var i = 0; i < index; i++) {
-          prevHeight += $(panes[i]).height();
+          prevHeight += $(panes[i]).height()+50;
         }
 
         // Calculate the final height which is previous height
         // plus current div height, where we would expect the
         // div to "go away" and have top = -(div height)
-        var currHeight = $(this).height();
+        var currHeight = $(this).height()+50;
         var finalHeight = prevHeight + currHeight;
 
         // Set the data attributes
@@ -77,7 +77,7 @@ $(document).ready(function() {
       var currPane = panes[current_pane];
       var elapsedHeight = 0;
       for (var i = 0; i < current_pane; i++) {
-        var ht = $(panes[i]).height();
+        var ht = $(panes[i]).height()+50;
         elapsedHeight += ht;
       }
 
@@ -85,6 +85,14 @@ $(document).ready(function() {
         duration: 200,
         easing: 'sqrt'
       });
+
+      if (current_pane == 0) {
+        $("#page-counter").fadeOut(300);
+      } else if (current_pane == 1) {
+        $("#page-counter").fadeIn(300);
+      }
+
+      $("#page-counter").text("Page "+current_pane+" of "+(pane_count-1));
     }
 
     this.next = function() { return this.showPane(current_pane+1, true); };
@@ -94,38 +102,49 @@ $(document).ready(function() {
 
       var prevHeight = 0;
       for (var i = 0; i < current_pane; i++) {
-        prevHeight += $(panes[i]).height();
+        prevHeight += $(panes[i]).height()+50;
+        prevHeight = (i == 0) ? prevHeight : prevHeight+50;
       }
 
       var g = e.gesture;
-      var d = s.getScrollTop();
-      var r = (d - prevHeight);
-
       g.preventDefault();
 
       var divHeight = $(panes[current_pane]).height();
-      var modDivHeight = (divHeight % pane_height);
+      divHeight = (current_pane == 0) ? divHeight : divHeight+50;
 
-      if (modDivHeight == 0) {
-        // The div is shorter than the viewport
-        if (g.direction == 'up') {
+      var quotient  = (divHeight/pane_height>>0);
+      var remainder = (divHeight % pane_height);
+      var d = s.getScrollTop();
+      var r = (d - prevHeight);
+      var subQuo = (divHeight/r>>0);
+      var subRem = (divHeight%r);
+      var subPane = (r/pane_height>>0);
+
+      if (g.direction == 'up') {
+        // Scroll to next section or card
+        //
+        if (quotient == 0 || (quotient == 1 && remainder == 0)) {
           self.next();
         } else {
-          self.prev();
+          if (quotient == subPane) {
+            self.next();
+          } else if (quotient-subPane > 1) {
+            var nextSubPane = prevHeight + (subPane*pane_height) + pane_height - 50;
+            self.nearbySection(nextSubPane);
+          } else {
+            var nextSubPane = prevHeight + (subPane*pane_height) + remainder;
+            self.nearbySection(nextSubPane);
+          }
         }
       } else {
-        // The div is larger than the viewport
-        if (r/divHeight < .5) {
-          if (g.direction == 'up') {
-            self.nearbySection(prevHeight + modDivHeight);
-          } else {
-            self.prev();
-          }
+        if (quotient == 0 || (quotient == 1) && remainder == 0) {
+          self.prev();
         } else {
-          if (g.direction == 'up') {
-            self.next();
-          } else {
+          if (r <= 0) {
             self.prev();
+          } else {
+            var prevSubPane = prevHeight + (subPane*pane_height);
+            self.nearbySection(prevSubPane);
           }
         }
       }
