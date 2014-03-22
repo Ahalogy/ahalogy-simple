@@ -38,13 +38,13 @@ $(document).ready(function() {
         // it is scrolled to
         var prevHeight = 0;
         for (var i = 0; i < index; i++) {
-          prevHeight += $(panes[i]).height()+50;
+          prevHeight += $(panes[i]).height()+80;
         }
 
         // Calculate the final height which is previous height
         // plus current div height, where we would expect the
         // div to "go away" and have top = -(div height)
-        var currHeight = $(this).height()+50;
+        var currHeight = $(this).height()+80;
         var finalHeight = prevHeight + currHeight;
 
         // Set the data attributes
@@ -77,7 +77,7 @@ $(document).ready(function() {
       var currPane = panes[current_pane];
       var elapsedHeight = 0;
       for (var i = 0; i < current_pane; i++) {
-        var ht = $(panes[i]).height()+50;
+        var ht = $(panes[i]).height()+80;
         elapsedHeight += ht;
       }
 
@@ -102,15 +102,15 @@ $(document).ready(function() {
 
       var prevHeight = 0;
       for (var i = 0; i < current_pane; i++) {
-        prevHeight += $(panes[i]).height()+50;
-        prevHeight = (i == 0) ? prevHeight : prevHeight+50;
+        prevHeight += $(panes[i]).height()+80;
+        prevHeight = (i == 0) ? prevHeight : prevHeight+80;
       }
 
       var g = e.gesture;
       g.preventDefault();
 
       var divHeight = $(panes[current_pane]).height();
-      divHeight = (current_pane == 0) ? divHeight : divHeight+50;
+      divHeight = (current_pane == 0) ? divHeight : divHeight+80;
 
       var quotient  = (divHeight/pane_height>>0);
       var remainder = (divHeight % pane_height);
@@ -129,7 +129,7 @@ $(document).ready(function() {
           if (quotient == subPane) {
             self.next();
           } else if (quotient-subPane > 1) {
-            var nextSubPane = prevHeight + (subPane*pane_height) + pane_height - 50;
+            var nextSubPane = prevHeight + (subPane*pane_height) + pane_height - 80;
             self.nearbySection(nextSubPane);
           } else {
             var nextSubPane = prevHeight + (subPane*pane_height) + remainder;
