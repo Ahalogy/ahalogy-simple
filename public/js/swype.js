@@ -102,7 +102,7 @@ $(document).ready(function() {
 
       var prevHeight = 0;
       for (var i = 0; i < current_pane; i++) {
-        prevHeight += $(panes[i]).height()+80;
+        prevHeight += $(panes[i]).height();
         prevHeight = (i == 0) ? prevHeight : prevHeight+80;
       }
 
@@ -121,31 +121,14 @@ $(document).ready(function() {
       var subPane = (r/pane_height>>0);
 
       if (g.direction == 'up') {
-        // Scroll to next section or card
-        //
-        if (quotient == 0 || (quotient == 1 && remainder == 0)) {
+        if (current_pane == 0 || (divHeight-r)/divHeight < .2) {
           self.next();
-        } else {
-          if (quotient == subPane) {
-            self.next();
-          } else if (quotient-subPane > 1) {
-            var nextSubPane = prevHeight + (subPane*pane_height) + pane_height - 80;
-            self.nearbySection(nextSubPane);
-          } else {
-            var nextSubPane = prevHeight + (subPane*pane_height) + remainder;
-            self.nearbySection(nextSubPane);
-          }
         }
       } else {
-        if (quotient == 0 || (quotient == 1) && remainder == 0) {
+        if (current_pane == 1 || (r < -100)) {
           self.prev();
-        } else {
-          if (r <= 0) {
-            self.prev();
-          } else {
-            var prevSubPane = prevHeight + (subPane*pane_height);
-            self.nearbySection(prevSubPane);
-          }
+        } else if (r < 0) {
+          self.showPane(current_pane, true)
         }
       }
     }
