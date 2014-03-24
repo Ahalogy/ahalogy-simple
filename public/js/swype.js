@@ -74,6 +74,13 @@ $(document).ready(function() {
 
     function setSkrollrOffset() {
 
+      if (current_pane == 0) {
+        $("#page-counter").hide();
+      } else if (current_pane == 1) {
+        $("#page-counter").show();
+      }
+      $("#page-counter").text("Page "+current_pane+" of "+(pane_count-1));
+
       var currPane = panes[current_pane];
       var elapsedHeight = 0;
       for (var i = 0; i < current_pane; i++) {
@@ -85,14 +92,6 @@ $(document).ready(function() {
         duration: 200,
         easing: 'sqrt'
       });
-
-      if (current_pane == 0) {
-        $("#page-counter").fadeOut(300);
-      } else if (current_pane == 1) {
-        $("#page-counter").fadeIn(300);
-      }
-
-      $("#page-counter").text("Page "+current_pane+" of "+(pane_count-1));
     }
 
     this.next = function() { return this.showPane(current_pane+1, true); };
