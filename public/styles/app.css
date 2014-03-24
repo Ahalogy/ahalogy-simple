@@ -54,6 +54,68 @@ ul, li {
   background-repeat: initial initial;
 }
 
+/* --------------- */
+/* Content Section */
+/* --------------- */
+
+.content-section {
+  background: #fff;
+  left: 0;
+  min-height: 568px;
+  width: 100%;
+  background-size: cover;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-shadow: 0px 10px 8px -8px #111;
+}
+
+.content-section img {
+}
+
+.content-section p {
+  color: #555;
+  font-family: "museo-sans", sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 30px;
+  padding: 15px;
+}
+
+
+/* This is hard-coded for testing purposes.
+ * The final version should just set the
+ * z-index while looping through the available
+ * content-sections
+ **/
+.content-section:nth-child(1) {
+  z-index: -1;
+}
+.content-section:nth-child(2) {
+  z-index: -2;
+}
+.content-section:nth-child(3) {
+  z-index: -3;
+}
+.content-section:nth-child(4) {
+  z-index: -4;
+}
+.content-section:nth-child(5) {
+  z-index: -5;
+}
+.content-section:nth-child(6) {
+  z-index: -6;
+}
+.content-section:nth-child(7) {
+  z-index: -7;
+}
+.content-section:nth-child(8) {
+  z-index: -8;
+}
+.content-section:nth-child(9) {
+  z-index: -9;
+}
+
 /* ---------- */
 /* Cover Page */
 /* ---------- */
@@ -64,6 +126,7 @@ ul, li {
   width: 100%;
   text-align: center;
   z-index: 100;
+  background: transparent;
   overflow: hidden;
 }
 
@@ -115,63 +178,6 @@ ul, li {
   margin-left: 10%;
 }
 
-/* --------------- */
-/* Content Section */
-/* --------------- */
-
-.content-section {
-  background: #fff;
-  left: 0;
-  min-height: 568px;
-  width: 100%;
-  padding-bottom: 80px;
-  background-size: cover;
-  box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-shadow: 0px 10px 8px -8px #111;
-}
-
-.content-section img {
-}
-
-.content-section p {
-  color: #555;
-  font-family: "museo-sans", sans-serif;
-  font-size: 18px;
-  font-weight: 300;
-  line-height: 30px;
-  padding: 15px;
-}
-
-.content-section:nth-child(1) {
-  z-index: -1;
-}
-.content-section:nth-child(2) {
-  z-index: -2;
-}
-.content-section:nth-child(3) {
-  z-index: -3;
-}
-.content-section:nth-child(4) {
-  z-index: -4;
-}
-.content-section:nth-child(5) {
-  z-index: -5;
-}
-.content-section:nth-child(6) {
-  z-index: -6;
-}
-.content-section:nth-child(7) {
-  z-index: -7;
-}
-.content-section:nth-child(8) {
-  z-index: -8;
-}
-.content-section:nth-child(9) {
-  z-index: -9;
-}
-
 /* ------------------ */
 /* Skrollr Custom CSS */
 /* ------------------ */
@@ -182,7 +188,7 @@ ul, li {
 
 #stickySwipe {
   width: 100%;
-  min-height: 568px;
+  min-height: 568px; /* Test this on iPhone4 */
   height: 100%;
 }
 
@@ -198,6 +204,7 @@ ul, li {
   bottom: 10px;
   left: 0;
   padding: 7px;
+  font-family: "museo-sans", sans-serif;
   font-size: 14px;
   background: rgba(0,0,0,0.75);
   color: #fff;
