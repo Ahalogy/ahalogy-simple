@@ -8,7 +8,7 @@ $(document).ready(function() {
 
     // Variables to hold the container object and
     // individual panes ("Cards")
-    var container = $(">div", element);
+    var container = element;
     var panes = $(".content-section", element);
     var screenHeight = 0;
     var pane_count = panes.length;
@@ -149,36 +149,53 @@ $(document).ready(function() {
       var relativeDistance  = (distanceSkrolld - prevHeight);
       var pctOfCardSkrolld  = relativeDistance/currentPaneHeight;
 
-      if (e.gesture.direction == 'up') {
 
-        // The user has swiped up
-        if (current_pane == 0 || pctOfCardSkrolld > .8) {
-          // If it's the cover page or the bottom 20% of the card
-          // automatically scroll/snap to the next card
+      switch(e.type)
+      {
+
+        case "swipeup":
+          e.gesture.stopDetect();
           self.next();
-        }
-        else if (pctOfCardSkrolld < .1) {
-          // If the user is within 10% of the top of the card
-          // automatically scroll/snap to the current card
-          self.curr();
-        }
-      } else {
+          break;
 
-        // The user has swiped down
-        if (current_pane == 1 || (pctOfCardSkrolld <= -.1)) {
-          // If the user is going back to the cover page or if
-          // they've done a hard flick, automatically snap to previous card
-          self.prev();
-        } else if (pctOfCardSkrolld > -.1 && pctOfCardSkrolld < .05) {
-          // If the top of the card is between -20% and 10% of the viewport,
-          // automatically snap to current card
-          self.curr();
-        }
+        case "tap":
+          e.gesture.stopDetect();
+          break;
+
+        // Handle Release
+        case "release":
+          if (e.gesture.direction == 'up') {
+
+            // The user has swiped up
+            if (current_pane == 0 || pctOfCardSkrolld > .7) {
+              // If it's the cover page or the bottom 30% of the card
+              // automatically scroll/snap to the next card
+              self.next();
+            }
+            else if (pctOfCardSkrolld < .1) {
+              // If the user is within 10% of the top of the card
+              // automatically scroll/snap to the current card
+              self.curr();
+            }
+          } else {
+
+            // The user has swiped down
+            if (current_pane == 1 || (pctOfCardSkrolld <= -.1)) {
+              // If the user is going back to the cover page or if
+              // they've done a hard flick, automatically snap to previous card
+              self.prev();
+            } else if (pctOfCardSkrolld > -.1 && pctOfCardSkrolld < .05) {
+              // If the top of the card is between -20% and 10% of the viewport,
+              // automatically snap to current card
+              self.curr();
+            }
+          }
+          break;
       }
     }
 
     // Initialize Hammer function with the container and respond to "release"
-    new Hammer(container[0], { drag_lock_to_axis: true }).on("release", handleHammer);
+    new Hammer(document.body, { drag_lock_to_axis: true }).on("swipeup tap release", handleHammer);
   }
 
   // Set and initialize the stickySwipe function

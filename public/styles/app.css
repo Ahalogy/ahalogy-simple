@@ -115,6 +115,30 @@ ul, li {
 .content-section:nth-child(9) {
   z-index: -9;
 }
+.content-section:nth-child(10) {
+  z-index: -10;
+}
+.content-section:nth-child(11) {
+  z-index: -11;
+}
+.content-section:nth-child(12) {
+  z-index: -12;
+}
+.content-section:nth-child(13) {
+  z-index: -13;
+}
+.content-section:nth-child(14) {
+  z-index: -14;
+}
+.content-section:nth-child(15) {
+  z-index: -15;
+}
+.content-section:nth-child(16) {
+  z-index: -16;
+}
+.content-section:nth-child(17) {
+  z-index: -17;
+}
 
 /* ---------- */
 /* Cover Page */
@@ -128,6 +152,7 @@ ul, li {
   z-index: 100;
   background: transparent;
   overflow: hidden;
+  box-shadow: none !important;
 }
 
 .cover-page .cover-image {
@@ -139,7 +164,7 @@ ul, li {
 
 .cover-page .avatar-container {
   position: absolute;
-  top: 150px;
+  top: 120px;
   z-index: 2;
   width: 100%;
   text-align: center;
@@ -178,23 +203,36 @@ ul, li {
   margin-left: 10%;
 }
 
+/* ------- */
+/* Ad Unit */
+/* ------- */
+
+.ad-unit img {
+  min-height: 100%;
+  min-width: 100%;
+  background-size: cover;
+}
+
+.ad-unit a {
+  position: absolute;
+  text-align: center;
+  top: 250px;
+  left: 0;
+  width: 100%;
+  margin: auto;
+  color: #fff;
+  font-family: "museo-sans", sans-serif;
+  font-size: 30px;
+  font-weight: bold;
+  background: rgba(0,0,0,0.5);
+}
+
 /* ------------------ */
 /* Skrollr Custom CSS */
 /* ------------------ */
 
 .skrollable {
   position: fixed;
-}
-
-#stickySwipe {
-  width: 100%;
-  min-height: 568px; /* Test this on iPhone4 */
-  height: 100%;
-}
-
-#skrollr-container {
-  min-height: 568px;
-  height: 100%;
 }
 
 #page-counter {
