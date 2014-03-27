@@ -114,7 +114,12 @@ $(document).ready(function() {
       } else if (current_pane == 1) {
         $("#page-counter").show();
       }
-      $("#page-counter").text("Page "+current_pane+" of "+(pane_count-1));
+
+      if (current_pane == pane_count-1) {
+        $("#page-counter").text("Recommended for You");
+      } else {
+        $("#page-counter").text("Page "+current_pane+" of "+(pane_count-1));
+      }
     }
 
     // --------------------------------------------------------- //
@@ -147,6 +152,7 @@ $(document).ready(function() {
       var currentPaneHeight = $(panes[current_pane]).height();
       var distanceSkrolld   = s.getScrollTop();
       var relativeDistance  = (distanceSkrolld - prevHeight);
+      var pctOfCardVisible  = (currentPaneHeight-relativeDistance)/568;
       var pctOfCardSkrolld  = relativeDistance/currentPaneHeight;
 
 
@@ -166,13 +172,15 @@ $(document).ready(function() {
         case "release":
           if (e.gesture.direction == 'up') {
 
+            console.log(pctOfCardVisible);
+
             // The user has swiped up
-            if (current_pane == 0 || pctOfCardSkrolld > .7) {
+            if (current_pane == 0 || pctOfCardVisible < .5) {
               // If it's the cover page or the bottom 30% of the card
               // automatically scroll/snap to the next card
               self.next();
             }
-            else if (pctOfCardSkrolld < .1) {
+            else if (pctOfCardSkrolld < .05) {
               // If the user is within 10% of the top of the card
               // automatically scroll/snap to the current card
               self.curr();
