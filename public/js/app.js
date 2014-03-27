@@ -56,8 +56,8 @@ $(document).ready(function() {
         var finalHeight = prevHeight + currHeight;
 
         // Set the data attributes
-        $(this).attr("data-"+prevHeight,  "top:0px;display:block;");
-        $(this).attr("data-"+finalHeight, "top:-"+currHeight+"px;display:none;");
+        $(this).attr("data-"+prevHeight,  "margin-top:0px;display:block;");
+        $(this).attr("data-"+finalHeight, "margin-top:-"+currHeight+"px;display:none;");
 
         // Refresh Skrollr instance
         s.refresh();
@@ -186,17 +186,7 @@ $(document).ready(function() {
               self.curr();
             }
           } else {
-
-            // The user has swiped down
-            if (current_pane == 1 || (pctOfCardSkrolld <= -.1)) {
-              // If the user is going back to the cover page or if
-              // they've done a hard flick, automatically snap to previous card
-              self.prev();
-            } else if (pctOfCardSkrolld > -.1 && pctOfCardSkrolld < .05) {
-              // If the top of the card is between -20% and 10% of the viewport,
-              // automatically snap to current card
-              self.curr();
-            }
+            self.prev();
           }
           break;
       }

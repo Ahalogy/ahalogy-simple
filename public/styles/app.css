@@ -11,6 +11,8 @@
 html, body {
   margin: 0;
   padding: 0;
+  height: 568px;
+  overflow: hidden;
 }
 
 /* Confine all page elements to fit
@@ -41,6 +43,7 @@ ul, li {
 /* ------------ */
 
 #progress {
+  position: absolute;
   z-index: 200;
   width: 1%;
   height: 6%;
@@ -59,15 +62,13 @@ ul, li {
 /* --------------- */
 
 .content-section {
+  position: relative;
+  width: 94%;
+  margin: 3% auto;
   background: #fff;
-  left: 0;
-  min-height: 568px;
-  width: 100%;
-  background-size: cover;
-  box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-shadow: 0px 10px 8px -8px #111;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.2);
+  box-shadow: 0px 5px 4px -4px #111;
 }
 
 .content-section img {
@@ -79,65 +80,15 @@ ul, li {
   font-size: 18px;
   font-weight: 300;
   line-height: 30px;
-  padding: 15px;
+  padding: 0 15px;
 }
 
-
-/* This is hard-coded for testing purposes.
- * The final version should just set the
- * z-index while looping through the available
- * content-sections
- **/
-.content-section:nth-child(1) {
-  z-index: -1;
-}
-.content-section:nth-child(2) {
-  z-index: -2;
-}
-.content-section:nth-child(3) {
-  z-index: -3;
-}
-.content-section:nth-child(4) {
-  z-index: -4;
-}
-.content-section:nth-child(5) {
-  z-index: -5;
-}
-.content-section:nth-child(6) {
-  z-index: -6;
-}
-.content-section:nth-child(7) {
-  z-index: -7;
-}
-.content-section:nth-child(8) {
-  z-index: -8;
-}
-.content-section:nth-child(9) {
-  z-index: -9;
-}
-.content-section:nth-child(10) {
-  z-index: -10;
-}
-.content-section:nth-child(11) {
-  z-index: -11;
-}
-.content-section:nth-child(12) {
-  z-index: -12;
-}
-.content-section:nth-child(13) {
-  z-index: -13;
-}
-.content-section:nth-child(14) {
-  z-index: -14;
-}
-.content-section:nth-child(15) {
-  z-index: -15;
-}
-.content-section:nth-child(16) {
-  z-index: -16;
-}
-.content-section:nth-child(17) {
-  z-index: -17;
+.dimmer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 568px;
 }
 
 /* ---------- */
@@ -163,7 +114,7 @@ ul, li {
 }
 
 .cover-page .avatar-container {
-  position: absolute;
+  position: relative;
   top: 120px;
   z-index: 2;
   width: 100%;
@@ -194,7 +145,6 @@ ul, li {
 }
 
 .cover-page .post-title {
-  position: absolute;
   top: 100px;
   z-index: 2;
   color: #fff;
@@ -207,10 +157,10 @@ ul, li {
 /* Ad Unit */
 /* ------- */
 
+.ad-unit {
+}
+
 .ad-unit img {
-  min-height: 100%;
-  min-width: 100%;
-  background-size: cover;
 }
 
 .ad-unit a {
@@ -231,8 +181,8 @@ ul, li {
 /* Skrollr Custom CSS */
 /* ------------------ */
 
-.skrollable {
-  position: fixed;
+#stickySwipe {
+  background: rgba(0,0,0,0.1);
 }
 
 #page-counter {
