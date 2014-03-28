@@ -12,10 +12,7 @@ $(document).ready(function() {
     var panes = $(".content-section", element);
     var screenHeight = 0;
     var pane_count = panes.length;
-
     var current_pane = 0;
-    var total_height = 0;
-    var vh = $(window).height();
 
     // ---------------------------------------------- //
     // init ----------------------------------------- //
@@ -62,7 +59,6 @@ $(document).ready(function() {
         $(this).attr("data-"+prevHeight,  "top:0px;display:block;");
         $(this).attr("data-"+finalHeight, "top:-"+currHeight+"px;display:none;");
 
-        total_height = finalHeight;
         // Refresh Skrollr instance
         s.refresh();
       });
@@ -175,19 +171,12 @@ $(document).ready(function() {
         // Handle Release
         case "release":
           if (e.gesture.direction == 'up') {
-
             console.log(pctOfCardVisible);
-
             // The user has swiped up
             if (current_pane == 0 || pctOfCardVisible < .5) {
               // If it's the cover page or the bottom 30% of the card
               // automatically scroll/snap to the next card
               self.next();
-            }
-            else if (pctOfCardSkrolld < .05) {
-              // If the user is within 10% of the top of the card
-              // automatically scroll/snap to the current card
-              self.curr();
             }
           } else {
 
