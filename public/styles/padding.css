@@ -1,0 +1,249 @@
+/* app css stylesheet */
+
+/* ----------------------- */
+/* Z-index values for page */
+/* ----------------------- */
+/* 0 = Anything that should go behind a "screen"
+ * 1 = Screens
+ * 2 = Anything that should go on top of a "screen" */
+
+/* Reset */
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Confine all page elements to fit
+ * within the screen. We will resize
+ * many elements later, but want to ensure
+ * no elements are wider than the screen */
+
+div, span, h1, h2, h3, h4, h5, p, img,
+ul, li {
+  max-width: 100%;
+}
+
+/* --------------------------- */
+/* Common or reusable elements */
+/* --------------------------- */
+
+.black-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 568px;
+  background-color: rgba(0,0,0,0.80);
+  z-index: 1; /* Above the images, below the text */
+}
+
+/* Progress Bar */
+/* ------------ */
+
+#progress {
+  z-index: 200;
+  width: 1%;
+  height: 6%;
+  background: #444;
+  top: 0;
+  right: 1%;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  background-position: initial initial;
+  background-repeat: initial initial;
+}
+
+/* --------------- */
+/* Content Section */
+/* --------------- */
+
+.content-section {
+  background: #fff;
+  left: 0;
+  min-height: 568px;
+  width: 100%;
+  padding-bottom: 50px;
+  background-size: cover;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-shadow: 0px 10px 8px -8px #111;
+}
+
+.content-section img {
+}
+
+.content-section p {
+  color: #555;
+  font-family: "museo-sans", sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 30px;
+  padding: 15px;
+}
+
+
+/* This is hard-coded for testing purposes.
+ * The final version should just set the
+ * z-index while looping through the available
+ * content-sections
+ **/
+.content-section:nth-child(1) {
+  z-index: -1;
+}
+.content-section:nth-child(2) {
+  z-index: -2;
+}
+.content-section:nth-child(3) {
+  z-index: -3;
+}
+.content-section:nth-child(4) {
+  z-index: -4;
+}
+.content-section:nth-child(5) {
+  z-index: -5;
+}
+.content-section:nth-child(6) {
+  z-index: -6;
+}
+.content-section:nth-child(7) {
+  z-index: -7;
+}
+.content-section:nth-child(8) {
+  z-index: -8;
+}
+.content-section:nth-child(9) {
+  z-index: -9;
+}
+.content-section:nth-child(10) {
+  z-index: -10;
+}
+.content-section:nth-child(11) {
+  z-index: -11;
+}
+.content-section:nth-child(12) {
+  z-index: -12;
+}
+.content-section:nth-child(13) {
+  z-index: -13;
+}
+.content-section:nth-child(14) {
+  z-index: -14;
+}
+.content-section:nth-child(15) {
+  z-index: -15;
+}
+.content-section:nth-child(16) {
+  z-index: -16;
+}
+.content-section:nth-child(17) {
+  z-index: -17;
+}
+
+/* ---------- */
+/* Cover Page */
+/* ---------- */
+
+.cover-page {
+  font-family: "proxima-nova", sans-serif;
+  height: 568px;
+  width: 100%;
+  text-align: center;
+  z-index: 100;
+  background: transparent;
+  overflow: hidden;
+  box-shadow: none !important;
+}
+
+.cover-page .cover-image {
+  min-width: 100%;
+  background-size: cover;
+  top: 0;
+  left: 0;
+}
+
+.cover-page .avatar-container {
+  position: absolute;
+  top: 120px;
+  z-index: 2;
+  width: 100%;
+  text-align: center;
+  -webkit-animation: menu 1.5s;
+  -moz-animation: menu 1.5s;
+  -ms-animation: menu 1.5s;
+  -o-animation: menu 1.5s;
+  animation: menu 1.5s;
+}
+
+.cover-page .avatar {
+  background: url("http://media-cache-ec0.pinimg.com/avatars/twopeasandpod-85_140.jpg") no-repeat #ccc;
+  background-size: cover;
+  height: 100px;
+  width: 100px;
+  margin: 0 auto;
+  border-radius: 50px;
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  border: 1px solid transparent;
+
+  /* Fade in */
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3;
+}
+
+.cover-page .post-title {
+  position: absolute;
+  top: 100px;
+  z-index: 2;
+  color: #fff;
+  font-weight: bold;
+  width: 80%;
+  margin-left: 10%;
+}
+
+/* ------- */
+/* Ad Unit */
+/* ------- */
+
+.ad-unit img {
+  height: 568px;
+  min-width: 100%;
+}
+
+.ad-unit a {
+  position: absolute;
+  text-align: center;
+  top: 250px;
+  left: 0;
+  width: 100%;
+  margin: auto;
+  color: #fff;
+  font-family: "museo-sans", sans-serif;
+  font-size: 30px;
+  font-weight: bold;
+  background: rgba(0,0,0,0.5);
+}
+
+/* ------------------ */
+/* Skrollr Custom CSS */
+/* ------------------ */
+
+.skrollable {
+  position: fixed;
+}
+
+#page-counter {
+  display: none;
+  position: absolute;
+  z-index: 100;
+  bottom: 10px;
+  left: 0;
+  padding: 7px;
+  font-family: "museo-sans", sans-serif;
+  font-size: 14px;
+  background: rgba(0,0,0,0.75);
+  color: #fff;
+}
