@@ -12,7 +12,10 @@ $(document).ready(function() {
     var panes = $(".content-section", element);
     var screenHeight = 0;
     var pane_count = panes.length;
+
     var current_pane = 0;
+    var total_height = 0;
+    var vh = $(window).height();
 
     // ---------------------------------------------- //
     // init ----------------------------------------- //
@@ -59,6 +62,7 @@ $(document).ready(function() {
         $(this).attr("data-"+prevHeight,  "top:0px;display:block;");
         $(this).attr("data-"+finalHeight, "top:-"+currHeight+"px;display:none;");
 
+        total_height = finalHeight;
         // Refresh Skrollr instance
         s.refresh();
       });
