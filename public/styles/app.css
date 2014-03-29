@@ -176,8 +176,6 @@ ul, li {
 }
 
 .cover-page .avatar {
-  background: url("http://media-cache-ec0.pinimg.com/avatars/twopeasandpod-85_140.jpg") no-repeat #ccc;
-  background-size: cover;
   height: 100px;
   width: 100px;
   margin: 0 auto;
