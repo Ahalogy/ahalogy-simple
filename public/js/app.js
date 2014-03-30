@@ -76,7 +76,7 @@ function StickySwipe(element)
   // 3) Calculate the height of previous panes                         //
   // 4) Animate to top of pane via Skrollr's custom animateTo function //
   // ----------------------------------------------------------------- //
-  this.showPane = function(index, animate) {
+  this.showPane = function(index, direction) {
 
     // Don't allow index to be greater than pane_count or zero
     index = Math.max(0, Math.min(index, pane_count-1));
@@ -89,9 +89,15 @@ function StickySwipe(element)
 
     // Calculate the height of the previous panes
     var currPane = panes[current_pane];
+    var currentPaneHeight = $(currPane).height();
     var anchor = 0;
     for (var i = 0; i < current_pane; i++) {
       anchor += $(panes[i]).height();
+    }
+
+    if (direction == -1 && currentPaneHeight > 568) {
+      console.log(currentPaneHeight % 568);
+      anchor += (currentPaneHeight % 568);
     }
 
     // Animate to the top of the Card at anchor point
@@ -125,9 +131,9 @@ function StickySwipe(element)
   // next(), curr(), and prev() are shortcut functions for      //
   // snapping to the next card, current card, or previous card //
   // --------------------------------------------------------- //
-  this.next = function() { return this.showPane(current_pane+1, true); };
-  this.curr = function() { return this.showPane(current_pane, true); };
-  this.prev = function() { return this.showPane(current_pane-1, true); };
+  this.next = function() { return this.showPane(current_pane+1, 1); };
+  this.curr = function() { return this.showPane(current_pane, 0); };
+  this.prev = function() { return this.showPane(current_pane-1, -1); };
 
   // ------------------------------------------------------ //
   // handleHammer(event) ---------------------------------- //
