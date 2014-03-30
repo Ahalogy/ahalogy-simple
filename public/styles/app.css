@@ -23,20 +23,6 @@ ul, li {
   max-width: 100%;
 }
 
-/* --------------------------- */
-/* Common or reusable elements */
-/* --------------------------- */
-
-.black-screen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 568px;
-  background-color: rgba(0,0,0,0.80);
-  z-index: 1; /* Above the images, below the text */
-}
-
 /* Progress Bar */
 /* ------------ */
 
@@ -153,6 +139,7 @@ ul, li {
   background: transparent;
   overflow: hidden;
   box-shadow: none !important;
+  background: rgba(255,255,255,0.7);
 }
 
 .cover-page .cover-image {
@@ -164,10 +151,9 @@ ul, li {
 
 .cover-page .avatar-container {
   position: absolute;
-  top: 120px;
+  top: 60px;
   z-index: 2;
   width: 100%;
-  text-align: center;
   -webkit-animation: menu 1.5s;
   -moz-animation: menu 1.5s;
   -ms-animation: menu 1.5s;
@@ -176,13 +162,14 @@ ul, li {
 }
 
 .cover-page .avatar {
-  height: 100px;
-  width: 100px;
-  margin: 0 auto;
+  height: 50px;
+  width: 50px;
   border-radius: 50px;
   -moz-border-radius: 50px;
   -webkit-border-radius: 50px;
   border: 1px solid transparent;
+  position: absolute;
+  left: 5%;
 
   /* Fade in */
   -webkit-transition: all 0.3s;
@@ -192,13 +179,17 @@ ul, li {
 }
 
 .cover-page .post-title {
-  position: absolute;
-  top: 100px;
+  text-align: left;
   z-index: 2;
-  color: #fff;
+  color: #333;
   font-weight: bold;
-  width: 80%;
-  margin-left: 10%;
+  width: 90%;
+  margin-left: 5%;
+}
+
+.cover-page p {
+  margin-left: 5%;
+  color: #333;
 }
 
 /* ------- */
