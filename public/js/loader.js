@@ -1,5 +1,5 @@
 // Stop the DOM
-window.stop();
+// window.stop();
 
 // Global Variables
 var ht = $(window).height();
