@@ -132,6 +132,7 @@ function StickySwipe(element)
   // --------------------------------------------------------- //
   this.next = function() { return this.showPane(current_pane+1, 1); };
   this.curr = function() { return this.showPane(current_pane, 0); };
+  this.bott = function() { return this.showPane(current_pane, -1); };
   this.prev = function() { return this.showPane(current_pane-1, -1); };
 
   // ------------------------------------------------------ //
@@ -159,13 +160,14 @@ function StickySwipe(element)
     var pctOfCardVisible  = (currentPaneHeight-relativeDistance)/568;
     var pctOfCardSkrolld  = relativeDistance/currentPaneHeight;
 
-
     switch(e.type)
     {
-
-      case "swipeup":
-        e.gesture.stopDetect();
-        self.next();
+      case "drag":
+        if (e.gesture.direction == 'up') {
+          console.log("Dragging up");
+          s.scale = 1000;
+          s.refresh();
+        }
         break;
 
       case "tap":
@@ -175,23 +177,22 @@ function StickySwipe(element)
       // Handle Release
       case "release":
         if (e.gesture.direction == 'up') {
-          console.log(pctOfCardVisible);
-          // The user has swiped up
-          if (current_pane == 0 || pctOfCardVisible < .7) {
-            // If it's the cover page or the bottom 30% of the card
-            // automatically scroll/snap to the next card
+          // Navigating to next card
+          if (pctOfCardVisible < 0.6) {
+            console.log("next");
             self.next();
+          } else if (pctOfCardVisible >= 0.6 && pctOfCardVisible < 1) {
+            console.log("bott");
+            self.bott();
+          } else if (pctOfCardSkrolld < 0.1) {
+            console.log("curr");
+            self.curr();
           }
         } else {
-
-          // The user has swiped down
-          if (current_pane == 1 || (pctOfCardSkrolld <= -.1)) {
-            // If the user is going back to the cover page or if
-            // they've done a hard flick, automatically snap to previous card
+          // Navigating to previous card
+          if (pctOfCardSkrolld < -0.2) {
             self.prev();
-          } else if (pctOfCardSkrolld > -.1 && pctOfCardSkrolld < .05) {
-            // If the top of the card is between -20% and 10% of the viewport,
-            // automatically snap to current card
+          } else if (pctOfCardSkrolld >= -0.2 && pctOfCardSkrolld < 0.1) {
             self.curr();
           }
         }
@@ -200,5 +201,5 @@ function StickySwipe(element)
   }
 
   // Initialize Hammer function with the container and respond to "release"
-  new Hammer(document.body, { drag_lock_to_axis: true }).on("swipeup tap release", handleHammer);
+  new Hammer(document.body, { drag_lock_to_axis: true }).on("drag tap release", handleHammer);
 }
