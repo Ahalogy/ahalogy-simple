@@ -83,9 +83,6 @@ function StickySwipe(element)
     // Set current_pane variable to the current index
     current_pane = index;
 
-    // Handle the page counter
-    handlePageCounter();
-
     // Calculate the height of the previous panes
     var currPane = panes[current_pane];
     var currentPaneHeight = $(currPane).height();
@@ -105,26 +102,6 @@ function StickySwipe(element)
       easing: 'sqrt'
     });
   };
-
-  // ------------------------------------ //
-  // handlePageCounter ------------------ //
-  // Show/Hide the page counter           //
-  // or                                   //
-  // Increment/Decrement the page counter //
-  // ------------------------------------ //
-  function handlePageCounter() {
-    if (current_pane == 0) {
-      $("#page-counter").hide();
-    } else if (current_pane == 1) {
-      $("#page-counter").show();
-    }
-
-    if (current_pane == pane_count-1) {
-      $("#page-counter").text("Recommended for You");
-    } else {
-      $("#page-counter").text("Page "+current_pane+" of "+(pane_count-1));
-    }
-  }
 
   // --------------------------------------------------------- //
   // next(), curr(), and prev() are shortcut functions for      //
