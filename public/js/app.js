@@ -94,9 +94,9 @@ function StickySwipe(element)
       anchor += $(panes[i]).height();
     }
 
-    if (direction == -1 && currentPaneHeight > 568) {
-      console.log(currentPaneHeight % 568);
-      anchor += (currentPaneHeight % 568);
+    if (direction == -1 && currentPaneHeight > 480) {
+      console.log(currentPaneHeight % 480);
+      anchor += (currentPaneHeight % 480);
     }
 
     // Animate to the top of the Card at anchor point
@@ -157,17 +157,12 @@ function StickySwipe(element)
     var currentPaneHeight = $(panes[current_pane]).height();
     var distanceSkrolld   = s.getScrollTop();
     var relativeDistance  = (distanceSkrolld - prevHeight);
-    var pctOfCardVisible  = (currentPaneHeight-relativeDistance)/568;
+    var pctOfCardVisible  = (currentPaneHeight-relativeDistance)/480;
     var pctOfCardSkrolld  = relativeDistance/currentPaneHeight;
 
     switch(e.type)
     {
       case "drag":
-        if (e.gesture.direction == 'up') {
-          console.log("Dragging up");
-          s.scale = 1000;
-          s.refresh();
-        }
         break;
 
       case "tap":
@@ -184,9 +179,6 @@ function StickySwipe(element)
           } else if (pctOfCardVisible >= 0.6 && pctOfCardVisible < 1) {
             console.log("bott");
             self.bott();
-          } else if (pctOfCardSkrolld < 0.1) {
-            console.log("curr");
-            self.curr();
           }
         } else {
           // Navigating to previous card
