@@ -20,7 +20,8 @@ function StickySwipe(element)
   // ---------------------------------------------- //
   this.init = function() {
     setLayerDimensions();
-    $(window).on("load orientationchange", function() {
+    $(window).on("load", function() {
+      console.log("Window loaded!");
       setLayerDimensions();
     })
   };
@@ -177,7 +178,7 @@ function StickySwipe(element)
         if (e.gesture.direction == 'up') {
           console.log(pctOfCardVisible);
           // The user has swiped up
-          if (current_pane == 0 || pctOfCardVisible < .5) {
+          if (current_pane == 0 || pctOfCardVisible < .7) {
             // If it's the cover page or the bottom 30% of the card
             // automatically scroll/snap to the next card
             self.next();
