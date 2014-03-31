@@ -57,11 +57,10 @@ function StickySwipe(element)
       // Set the data attributes
       $(this).attr("data-"+prevHeight,  "top:0px;display:block;");
       $(this).attr("data-"+finalHeight, "top:-"+currHeight+"px;display:none;");
-    });
 
-    // Refresh Skrollr instance
-    s.refresh();
-    console.log("Refresh skrollr");
+      // Refresh Skrollr instance
+      s.refresh();
+    });
 
     screenHeight = element.height();
     container.height(screenHeight);
