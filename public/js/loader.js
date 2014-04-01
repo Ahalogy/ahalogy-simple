@@ -51,7 +51,7 @@ function displayCards() {
   .done(function( html ) {
     $("body").empty().append(html).append("<div class='loader'><div class='loading'></div><div id='loading-text'>loading</div></div>");
     // Setup Skrollr deferred
-    setTimeout(initSkrollr, 4000);
+    setTimeout(initSkrollr, 2000);
   })
   .fail(function() {
     displayOriginalSite();
@@ -77,7 +77,7 @@ function setOrUpdateViewport() {
 function initSkrollr() {
   console.log("Init Skrollr");
   window.s = skrollr.init({
-    mobileDeceleration: 0.9,
+    mobileDeceleration: 0.02,
     edgeStrategy: 'set',
     easing: {
       WTF: Math.random,

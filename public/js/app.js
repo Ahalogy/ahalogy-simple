@@ -61,6 +61,9 @@ function StickySwipe(element)
       $(this).attr("data-"+prevHeight,  "top:0px;display:block;");
       $(this).attr("data-"+finalHeight, "top:-"+currHeight+"px;display:none;");
 
+      // Add appropriate page numbering to card
+      $(this).find(".paging").text("Page " + index + " of " + (pane_count-2));
+
       // Refresh Skrollr instance
       s.refresh();
     });
