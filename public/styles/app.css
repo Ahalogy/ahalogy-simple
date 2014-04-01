@@ -84,6 +84,8 @@ h1 {
 }
 
 .content-section img {
+  width: 290px;
+  padding: 0 15px;
 }
 
 .content-section p {
@@ -190,6 +192,7 @@ h1 {
   -moz-border-radius: 50px;
   -webkit-border-radius: 50px;
   border: 1px solid transparent;
+  padding: 0;
   position: absolute;
   left: 5%;
 
@@ -233,6 +236,8 @@ h1 {
 .ad-unit img {
   height: 480px;
   min-width: 100%;
+  padding: 0;
+  margin: 0;
 }
 
 .ad-unit a {
