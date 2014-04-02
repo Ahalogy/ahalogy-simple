@@ -38,7 +38,7 @@ function displayCards() {
             append("<script src='js/app.js'></script>");
 
   // Empty the body and replace with Loading screen
-  $("body").empty().append("<div class='loader'><div class='loading'></div><div id='loading-text'>loading</div></div>");
+  $("body").empty().append("<div class='loader'><div class='loading'></div></div>");
 
   // Attempt to fetch carded content
   // data-mobilify=1, data-clientId=[Client Identifier], data-articleId=[Article Identifier]
@@ -49,7 +49,7 @@ function displayCards() {
   var cardedURL = clientIdentifier + "-" + articleIdentifier + "-iphone.html";
   var request = $.ajax( cardedURL )
   .done(function( html ) {
-    $("body").empty().append(html).append("<div class='loader'><div class='loading'></div><div id='loading-text'>loading</div></div>");
+    $("body").empty().append(html).append("<div class='loader'><div class='loading'></div></div>");
     // Setup Skrollr deferred
     setTimeout(initSkrollr, 2000);
   })

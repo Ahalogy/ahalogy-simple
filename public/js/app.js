@@ -21,7 +21,6 @@ function StickySwipe(element)
   this.init = function() {
     setLayerDimensions();
     $(window).on("load", function() {
-      console.log("Window loaded!");
       setLayerDimensions();
     })
   };
@@ -94,9 +93,10 @@ function StickySwipe(element)
       anchor += $(panes[i]).height();
     }
 
-    if (direction == -1 && currentPaneHeight > 480) {
-      console.log(currentPaneHeight % 480);
-      anchor += (currentPaneHeight % 480);
+    if (direction == -1 && currentPaneHeight > 460) {
+      quotient = (Math.floor(currentPaneHeight/460)-1);
+      remainder = currentPaneHeight%460;
+      anchor += (quotient*460 + remainder);
     }
 
     // Animate to the top of the Card at anchor point
@@ -137,7 +137,7 @@ function StickySwipe(element)
     var currentPaneHeight = $(panes[current_pane]).height();
     var distanceSkrolld   = s.getScrollTop();
     var relativeDistance  = (distanceSkrolld - prevHeight);
-    var pctOfCardVisible  = (currentPaneHeight-relativeDistance)/480;
+    var pctOfCardVisible  = (currentPaneHeight-relativeDistance)/460;
     var pctOfCardSkrolld  = relativeDistance/currentPaneHeight;
 
     switch(e.type)
