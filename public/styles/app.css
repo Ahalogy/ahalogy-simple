@@ -279,15 +279,10 @@ h1 {
 
 .ad-unit a {
   position: absolute;
-  text-align: center;
-  top: 250px;
+  top: 0;
   left: 0;
   width: 100%;
-  margin: auto;
-  color: #fff;
-  font-size: 30px;
-  font-weight: bold;
-  background: rgba(0,0,0,0.5);
+  height: 100%;
 }
 
 /* ------------------ */
