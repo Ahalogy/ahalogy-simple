@@ -9,19 +9,19 @@
 
 @font-face {
   font-family: "FuturaLT-Bold";
-  src: url("/public/fonts/FuturaLT-Bold.ttf");
+  src: url("/fonts/FuturaLT-Bold.ttf");
   font-weight: bold;
 }
 
 @font-face {
   font-family: "FuturaLT-Book";
-  src: url("/public/fonts/FuturaLT-Book.ttf");
+  src: url("/fonts/FuturaLT-Book.ttf");
   font-weight: normal;
 }
 
 @font-face {
   font-family: "Tisa";
-  src: url("/public/fonts/Tisa.ttf");
+  src: url("/fonts/Tisa.ttf");
   font-weight: normal;
 }
 
