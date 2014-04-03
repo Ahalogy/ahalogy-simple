@@ -77,7 +77,6 @@ function setOrUpdateViewport() {
 function initSkrollr() {
   console.log("Init Skrollr");
   window.s = skrollr.init({
-    mobileDeceleration: 0.02,
     edgeStrategy: 'set',
     easing: {
       WTF: Math.random,

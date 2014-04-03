@@ -54,8 +54,6 @@ function StickySwipe(element)
       var currHeight = $(this).height();
       var finalHeight = prevHeight + currHeight;
 
-      console.log(currHeight, finalHeight);
-
       // Set the data attributes
       $(this).attr("data-"+prevHeight,  "top:0px;display:block;");
       $(this).attr("data-"+finalHeight, "top:-"+currHeight+"px;display:none;");
@@ -151,21 +149,28 @@ function StickySwipe(element)
 
       // Handle Release
       case "release":
+        console.log(e.gesture.velocityY);
         if (e.gesture.direction == 'up') {
           // Navigating to next card
-          if (pctOfCardVisible < 0.6) {
-            console.log("next");
+          if (e.gesture.velocityY > 2) {
             self.next();
-          } else if (pctOfCardVisible >= 0.6 && pctOfCardVisible < 1) {
-            console.log("bott");
-            self.bott();
+          } else {
+            if (pctOfCardVisible < 0.6) {
+              self.next();
+            } else if (pctOfCardVisible >= 0.6 && pctOfCardVisible < 1) {
+              self.bott();
+            }
           }
         } else {
           // Navigating to previous card
-          if (pctOfCardSkrolld < -0.2) {
+          if (e.gesture.velocityY > 2) {
             self.prev();
-          } else if (pctOfCardSkrolld >= -0.2 && pctOfCardSkrolld < 0.1) {
-            self.curr();
+          } else {
+            if (pctOfCardSkrolld < -0.2) {
+              self.prev();
+            } else if (pctOfCardSkrolld >= -0.2 && pctOfCardSkrolld < 0.1) {
+              self.curr();
+            }
           }
         }
         break;

@@ -189,6 +189,7 @@ h1 {
 }
 
 .cover-page .avatar-container p {
+  font-family: FuturaLT-Book, Helvetica, sans-serif;
   text-align: left;
   margin-left: 60px;
   padding-top: 5px;
