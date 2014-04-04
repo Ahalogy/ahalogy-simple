@@ -9,19 +9,11 @@ $(document).ready(function() {
   // Var to store whether or not to load carded content
   var displayCardedContent = (function()
   {
-    var shouldDisplayCardedContent = true;
-    var pageURL = window.location.search.substring(1);
-    var URLVariables = pageURL.split('&');
-    for (var i = 0; i < URLVariables.length; i++)
-    {
-        var parameterName = URLVariables[i].split('=');
-        if (parameterName[0] == 'disableMobilify' && parameterName[1] == 1)
-        {
-            shouldDisplayCardedContent = false;
-            break;
-        }
-    }
-    return shouldDisplayCardedContent;
+    var urlString = window.location.hash;
+    var flag = "disableMobilify";
+    var n = occurrences(urlString, flag);
+    console.log(n);
+    return (n == 0);
   })();
 
   // Display carded content
@@ -46,7 +38,7 @@ function displayCards() {
   var cardedData = $("#mobilify-loader").data();
   var clientIdentifier = cardedData.client;
   var articleIdentifier = cardedData.article;
-  var cardedURL = clientIdentifier + "-" + articleIdentifier + "-iphone.html";
+  var cardedURL = clientIdentifier + "-" + articleIdentifier + "-ihone.html";
   var request = $.ajax( cardedURL )
   .done(function( html ) {
     $("body").empty().append(html).append("<div class='loader'><div class='loading'></div></div>");
@@ -61,8 +53,8 @@ function displayCards() {
 }
 
 function displayOriginalSite() {
-  var originalSiteURL = document.URL + "?disableMobilify=1";
-  window.location.href = originalSiteURL;
+  window.location.hash = "#disableMobilify";
+  window.location.reload(true);
 }
 
 function setOrUpdateViewport() {
@@ -92,4 +84,20 @@ function initSkrollr() {
 
   // Fade out the loading screen
   $(".loader").stop().fadeOut();
+}
+
+function occurrences(string, substring) {
+  var n = 0;
+  var pos = 0;
+
+  while (true) {
+    pos = string.indexOf(substring, pos);
+    if (pos != -1) {
+      n++;
+      pos += substring.length;
+    } else {
+      break;
+    }
+  }
+  return (n);
 }
