@@ -38,7 +38,7 @@ function displayCards() {
   var cardedData = $("#mobilify-loader").data();
   var clientIdentifier = cardedData.client;
   var articleIdentifier = cardedData.article;
-  var cardedURL = clientIdentifier + "-" + articleIdentifier + "-ihone.html";
+  var cardedURL = clientIdentifier + "-" + articleIdentifier + "-iphone.html";
   var request = $.ajax( cardedURL )
   .done(function( html ) {
     $("body").empty().append(html).append("<div class='loader'><div class='loading'></div></div>");
