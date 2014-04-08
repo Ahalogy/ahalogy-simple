@@ -42,6 +42,13 @@ function displayCards() {
   var request = $.ajax( cardedURL )
   .done(function( html ) {
     $("body").empty().append(html).append("<div class='loader'><div class='loading'></div></div>");
+
+    $(".post-title").each(function() {
+      if ($(this).length > 54) {
+        $(this).text($(this).text().substring(0,54)+"...");
+      }
+    });
+
     // Setup Skrollr deferred
     setTimeout(initSkrollr, 2000);
   })
