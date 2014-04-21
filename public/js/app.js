@@ -40,29 +40,45 @@ function StickySwipe(element)
     //
     panes.each(function(index) {
 
-      // Calculate the combined height of the previous panes
-      // This number will be set as the first data-attribute
-      // with the value "top:0px;" to force the parallax effect
-      var prevHeight = 0;
-      for (var i = 0; i < index; i++) {
-        prevHeight += $(panes[i]).height();
-      }
+        // Calculate the combined height of the previous panes
+        // This number will be set as the first data-attribute
+        // with the value "top:0px;" to force the parallax effect
+        var prevHeight = 0;
+        for (var i = 0; i < index; i++) {
+          prevHeight += $(panes[i]).height();
+        }
 
-      // Calculate the final height, or prevHeight + current div height
-      // This number will be set as the second data-attribute
-      // with the value "top:-(current pane height)px
-      var currHeight = $(this).height();
-      var finalHeight = prevHeight + currHeight;
+        // Calculate the final height, or prevHeight + current div height
+        // This number will be set as the second data-attribute
+        // with the value "top:-(current pane height)px
+        var currHeight = $(this).height();
+        var finalHeight = prevHeight + currHeight;
+        var startFade   = prevHeight + currHeight - (568/2);
 
-      // Set the data attributes
-      $(this).attr("data-"+prevHeight,  "top:0px;display:block;");
-      $(this).attr("data-"+finalHeight, "top:-"+currHeight+"px;display:none;");
+        // Set the data attributes
+        $(this).attr("data-"+prevHeight,  "top:0px;display:block;");
 
-      // Add appropriate page numbering to card
-      $(this).find(".paging").text("Page " + index + " of " + (pane_count-2));
+        if (index < pane_count-1) {
+          $(this).attr("data-"+finalHeight, "top:-"+currHeight+"px;display:none;");
+          
+          // Add a special div to apply fade-out effects to
+          $(this).append("<div class='card-fader'></div>");
+          var fader = $(this).find('.card-fader');
+          fader.attr("data-"+prevHeight,  "opacity:0;");
+          fader.attr("data-"+startFade,   "opacity:0;");
+          fader.attr("data-"+finalHeight, "opacity:1;");
 
-      // Refresh Skrollr instance
-      s.refresh();
+          // Add an invisible footer to each card to account for padding issues
+          $(this).append("<div class='fake-footer'></div>");
+
+        } else {
+        }
+
+        // Add appropriate page numbering to card
+        $(this).find(".paging").text("Page " + index + " of " + (pane_count-2));
+
+        // Refresh Skrollr instance
+        s.refresh();
     });
   };
 
@@ -140,40 +156,40 @@ function StickySwipe(element)
 
     switch(e.type)
     {
-      case "drag":
-        break;
+    case "drag":
+      break;
 
-      case "tap":
-        e.gesture.stopDetect();
-        break;
+    case "tap":
+      e.gesture.stopDetect();
+      break;
 
-      // Handle Release
-      case "release":
-        console.log(e.gesture.velocityY);
-        if (e.gesture.direction == 'up') {
-          // Navigating to next card
-          if (e.gesture.velocityY > 2) {
-            self.next();
-          } else {
-            if (pctOfCardVisible < 0.6) {
-              self.next();
-            } else if (pctOfCardVisible >= 0.6 && pctOfCardVisible < 1) {
-              self.bott();
-            }
-          }
+    // Handle Release
+    case "release":
+
+      mixpanel.track("Finger Release", {
+        "velocityY": e.gesture.velocityY,
+        "deltaY": e.gesture.deltaY,
+        "time": e.gesture.deltaTime
+      });
+
+      if (e.gesture.direction == 'up') {
+        // Navigating to next card
+        if (e.gesture.velocityY > 1.5 || pctOfCardVisible < 0.4) {
+          self.next();
+        }
+      } else {
+        // Navigating to previous card
+        if (e.gesture.velocityY > 1) {
+          self.prev();
         } else {
-          // Navigating to previous card
-          if (e.gesture.velocityY > 2) {
+          if (pctOfCardSkrolld < -0.2) {
             self.prev();
-          } else {
-            if (pctOfCardSkrolld < -0.2) {
-              self.prev();
-            } else if (pctOfCardSkrolld >= -0.2 && pctOfCardSkrolld < 0.1) {
-              self.curr();
-            }
+          } else if (pctOfCardSkrolld >= -0.2 && pctOfCardSkrolld < 0.1) {
+            self.curr();
           }
         }
-        break;
+      }
+      break;
     }
   }
 
